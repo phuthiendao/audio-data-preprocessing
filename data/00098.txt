@@ -1,0 +1,1 @@
+Hệ thống tổng hợp giọng nói đa vùng miền hỗ trợ phát âm chuẩn xác giọng Bắc, Trung, Nam, mang lại sự gần gũi và tự nhiên cho các ứng dụng giao tiếp người máy.

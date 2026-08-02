@@ -1,0 +1,1 @@
+Công nghệ Text-to-Speech ngày nay không chỉ dừng lại ở việc đọc đúng từ và đúng chính tả mà còn có khả năng tự động phân tích ngữ cảnh, điều chỉnh ngắt nghỉ hợp lý, thể hiện các sắc thái cảm xúc đa dạng như vui vẻ, buồn bã hay trang trọng tùy thuộc vào nội dung của văn bản đầu vào.

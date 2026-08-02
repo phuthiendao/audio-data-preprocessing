@@ -1,0 +1,1 @@
+Hệ thống API Public của AusyncLab cung cấp các công cụ tích hợp linh hoạt cho phép các nhà phát triển dễ dàng ứng dụng công nghệ tổng hợp giọng nói, sao chép giọng nói tức thì, chuyển đổi giọng và đồng bộ hình ảnh avatar vào các ứng dụng di động, trang web hoặc dịch vụ tự động hóa một cách nhanh chóng, an toàn và tối ưu chi phí vận hành.

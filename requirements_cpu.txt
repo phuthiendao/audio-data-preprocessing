@@ -1,0 +1,6 @@
+# CPU install:  pip install -r requirements_cpu.txt
+# PyTorch CPU build + all shared dependencies.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.8.0+cpu
+torchaudio==2.8.0+cpu
+-r requirements.txt

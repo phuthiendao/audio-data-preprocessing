@@ -1,0 +1,1 @@
+Hệ thống xử lý dữ liệu âm thanh tự động giúp phát hiện các đoạn âm thanh nhiễu, chuẩn hóa âm lượng, phân tách giọng nói người đọc và trích xuất các đặc trưng tần số cao độ chính xác, tạo cơ sở dữ liệu đầu vào chất lượng cao để huấn luyện các mô hình tổng hợp giọng nói AI thế hệ mới tự nhiên như người thật.

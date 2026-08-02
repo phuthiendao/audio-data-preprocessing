@@ -1,0 +1,1 @@
+Quá trình tiền xử lý dữ liệu âm thanh đóng vai trò vô cùng quan trọng trong việc huấn luyện các mô hình AI giọng nói, bao gồm các bước kiểm tra chất lượng tệp, lọc bỏ nhiễu nền, trích xuất các thông số âm học như cao độ, tốc độ nói, độ trong trẻo và gán nhãn mô tả ngôn ngữ tự nhiên để mô hình có thể học và tái tạo giọng nói chuẩn xác.
