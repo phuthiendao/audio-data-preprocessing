@@ -1,1 +1,0 @@
-Nền tảng AusyncLab cung cấp giải pháp toàn diện cho việc tổng hợp giọng nói AI, sao chép giọng nói tức thì từ mẫu ngắn, chuyển đổi giọng nói và tạo avatar nói sống động với khả năng phản hồi nhanh chóng, hỗ trợ nhiều ngôn ngữ và đảm bảo tính bảo mật cao cho các nhà phát triển và doanh nghiệp toàn cầu.

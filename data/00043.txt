@@ -1,1 +1,0 @@
-Công nghệ điện toán đám mây kết hợp với kiến trúc microservices giúp các doanh nghiệp xây dựng những hệ thống phần mềm có khả năng mở rộng linh hoạt, hoạt động ổn định và sẵn sàng đáp ứng lượng truy cập lớn trong các chiến dịch kinh doanh quy mô toàn cầu.

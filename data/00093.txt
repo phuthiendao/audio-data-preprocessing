@@ -1,1 +1,0 @@
-Việc ứng dụng công nghệ chuỗi khối trong quản lý chuỗi cung ứng giúp tăng cường tính minh bạch, truy xuất nguồn gốc sản phẩm và chống hàng giả hiệu quả.

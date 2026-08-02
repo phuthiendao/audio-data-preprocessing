@@ -98,8 +98,7 @@ Thumbs.db
 *.m4a
 
 # Data & Output directories
-data/*.wav
-data/*.mp3
+data/
 output/*.wav
 
 # Hugging Face cache
