@@ -1,5 +1,5 @@
-from unified_analysis.config import DECIMAL_PLACES
-from unified_analysis.utils.metrics import (
+from processor.config import DECIMAL_PLACES
+from processor.utils.metrics import (
     compute_breathiness, compute_timbre, compute_resonance, compute_energy,
     compute_stability, compute_intonation, compute_expressiveness, compute_clarity
 )

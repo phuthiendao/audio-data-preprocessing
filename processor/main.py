@@ -6,11 +6,11 @@ import time
 sys.path.append(os.getcwd())
 
 # Apply PyTorch compatibility patch before importing models
-from unified_analysis.utils.torch_compat import ensure_compatibility
+from processor.utils.torch_compat import ensure_compatibility
 ensure_compatibility()
 
-from unified_analysis.core.processor import VoiceProcessor
-from unified_analysis.scripts.convert_to_text import ProfileToTextMapper
+from processor.core.processor import VoiceProcessor
+from processor.scripts.convert_to_text import ProfileToTextMapper
 
 def cmd_process(args):
     #print(f"Starting Processing: {args.input}")

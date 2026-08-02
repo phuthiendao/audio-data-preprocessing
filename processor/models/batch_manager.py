@@ -1,5 +1,5 @@
 import librosa
-from unified_analysis.config import SAMPLING_RATE
+from processor.config import SAMPLING_RATE
 from .ai_classifiers import GenderClassifier, AccentClassifier
 
 class BatchAIClassifier:

@@ -5,7 +5,7 @@ import json
 
 import numpy as np
 
-from unified_analysis.config import TEXT_MAPPING_BINS, COMPOSITE_SCORE_BINS
+from processor.config import TEXT_MAPPING_BINS, COMPOSITE_SCORE_BINS
 
 # Bins are computed from the dataset distribution at convert time. Below this
 # many valid samples the distribution is too small, so we fall back to config.

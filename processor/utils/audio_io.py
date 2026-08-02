@@ -3,7 +3,7 @@ import glob
 import librosa
 import soundfile as sf
 import numpy as np
-from unified_analysis.config import SAMPLING_RATE, MAX_AUDIO_DURATION, AUDIO_EXTENSIONS
+from processor.config import SAMPLING_RATE, MAX_AUDIO_DURATION, AUDIO_EXTENSIONS
 
 def get_audio_files(audio_dir):
     # streaming file

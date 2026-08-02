@@ -1,5 +1,5 @@
 import numpy as np
-from unified_analysis.config import NORM_RANGES, DECIMAL_PLACES
+from processor.config import NORM_RANGES, DECIMAL_PLACES
 
 
 def normalize(value, min_val, max_val):

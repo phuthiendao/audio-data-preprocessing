@@ -8,13 +8,13 @@ import threading
 
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed, wait, FIRST_COMPLETED
 
-from unified_analysis.config import SAMPLING_RATE, MIN_AUDIO_DURATION, MAX_AUDIO_DURATION
-from unified_analysis.utils.audio_io import get_audio_files, load_audio_16k, AudioCache, audio_duration_sec
-from unified_analysis.utils.common import clean_memory, load_transcripts, CheckpointManager, ProgressTracker
+from processor.config import SAMPLING_RATE, MIN_AUDIO_DURATION, MAX_AUDIO_DURATION
+from processor.utils.audio_io import get_audio_files, load_audio_16k, AudioCache, audio_duration_sec
+from processor.utils.common import clean_memory, load_transcripts, CheckpointManager, ProgressTracker
 
-from unified_analysis.models.batch_manager import BatchAIClassifier
-from unified_analysis.models.acoustic_features import OpenSmileAcousticFeatures
-from unified_analysis.core.profile_builder import ProfileBuilder
+from processor.models.batch_manager import BatchAIClassifier
+from processor.models.acoustic_features import OpenSmileAcousticFeatures
+from processor.core.profile_builder import ProfileBuilder
 
 from dataspeech.gpu_enrichments.pitch import pitch_apply
 from dataspeech.gpu_enrichments.snr_and_reverb import snr_apply
