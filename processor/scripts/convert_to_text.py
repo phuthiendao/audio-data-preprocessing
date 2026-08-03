@@ -5,7 +5,7 @@ import json
 
 import numpy as np
 
-from processor.config import TEXT_MAPPING_BINS, COMPOSITE_SCORE_BINS
+from processor.config import FALLBACK_BINS, FALLBACK_COMPOSITE_BINS
 
 # Bins are computed from the dataset distribution at convert time. Below this
 # many valid samples the distribution is too small, so we fall back to config.
@@ -21,9 +21,9 @@ BIN_STD_SPAN = 2.5  # gaussian only: half-width of the binned range, in std unit
 
 # Each binned label: where it goes in the output, which profile value feeds it,
 # the label vocabulary, and how to fall back when data is insufficient.
-#   kind="composite" -> value is a 0..1 score, fallback = COMPOSITE_SCORE_BINS[cfg]
-#   kind="text"      -> value is a raw metric, fallback = TEXT_MAPPING_BINS[cfg]
-#   gender=True      -> edges computed per gender; fallback = TEXT_MAPPING_BINS[cfg_<gender>]
+#   kind="composite" -> value is a 0..1 score, fallback = FALLBACK_COMPOSITE_BINS[cfg]
+#   kind="text"      -> value is a raw metric, fallback = FALLBACK_BINS[cfg]
+#   gender=True      -> edges computed per gender; fallback = FALLBACK_BINS[cfg_<gender>]
 BIN_SPECS = [
     {"out": ("voice", "pitch"),                 "val": ("voice", "pitch_hz"),          "kind": "text",      "cfg": "pitch",   "gender": True},
     {"out": ("voice", "timbre"),                "val": ("voice", "timbre"),            "kind": "composite", "cfg": "timbre"},
@@ -54,10 +54,10 @@ class ProfileToTextMapper:
 
     def _labels(self, spec):
         if spec["kind"] == "composite":
-            return COMPOSITE_SCORE_BINS[spec["cfg"]]["labels"]
+            return FALLBACK_COMPOSITE_BINS[spec["cfg"]]["labels"]
         if spec.get("gender"):
-            return TEXT_MAPPING_BINS[spec["cfg"] + "_male"]["labels"]
-        return TEXT_MAPPING_BINS[spec["cfg"]]["labels"]
+            return FALLBACK_BINS[spec["cfg"] + "_male"]["labels"]
+        return FALLBACK_BINS[spec["cfg"]]["labels"]
 
     @staticmethod
     def _get_val(profile, spec):
@@ -150,7 +150,7 @@ class ProfileToTextMapper:
             if e is not None:
                 return self._label_from_edges(value, e, labels)
             if g in ("male", "female"):
-                cfg = TEXT_MAPPING_BINS[spec["cfg"] + "_" + g]
+                cfg = FALLBACK_BINS[spec["cfg"] + "_" + g]
                 return self._get_bin_label(value, cfg["edges"], cfg["labels"])
             return "undefined"
 
@@ -158,8 +158,8 @@ class ProfileToTextMapper:
         if e is not None:
             return self._label_from_edges(value, e, labels)
         if spec["kind"] == "composite":
-            return self._score_to_label(value, COMPOSITE_SCORE_BINS[spec["cfg"]])
-        cfg = TEXT_MAPPING_BINS[spec["cfg"]]
+            return self._score_to_label(value, FALLBACK_COMPOSITE_BINS[spec["cfg"]])
+        cfg = FALLBACK_BINS[spec["cfg"]]
         return self._get_bin_label(value, cfg["edges"], cfg["labels"])
 
     def profile_to_text(self, profile: dict) -> dict:

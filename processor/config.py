@@ -48,8 +48,10 @@ NORM_RANGES = {
 }
 
 
-# Text Mapping Bins 
-TEXT_MAPPING_BINS = {
+# FALLBACK ONLY. Primary path: convert_to_text.py computes `edges` from the dataset
+# (gaussian mean +/- K*std). The `edges` below are used only when a class has
+# < MIN_N (50) valid samples. `labels` are always used (they name the bins in both paths).
+FALLBACK_BINS = {
     # Speaking Rate 
     "speed": {
         "edges": [0.0, 3.0, 4.0, 5.0, 6.0, 7.0, 10.0],
@@ -89,8 +91,8 @@ TEXT_MAPPING_BINS = {
     }
 }
 
-# Composite Score Bins
-COMPOSITE_SCORE_BINS = {
+# Fallback for composite (0..1) scores when a class has < MIN_N samples (see FALLBACK_BINS).
+FALLBACK_COMPOSITE_BINS = {
     # Timbre (Median 0.53)
     "timbre": {
         "ranges": [(0, 0.38), (0.38, 0.48), (0.48, 0.62), (0.62, 1.0)],
