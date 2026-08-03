@@ -158,9 +158,9 @@ preprocessing-data-tts/
 │   └── cpu_enrichments/      # speaking rate (Vietnamese syllables/sec)
 ├── prompts/                  # natural-language descriptions (Gemini)
 ├── alignment/                # forced alignment (stable-ts + Whisper) — separate env
-├── requirements.txt          # shared dependencies
-├── requirements_cpu.txt      # + PyTorch CPU
-├── requirements_gpu.txt      # + PyTorch CUDA 12.6
+├── requirements.txt         
+├── requirements_cpu.txt     
+├── requirements_gpu.txt      
 └── README.md
 ```
 
