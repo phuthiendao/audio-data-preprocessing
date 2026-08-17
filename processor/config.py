@@ -5,6 +5,10 @@ MIN_AUDIO_DURATION = 1.0   # drop audio shorter than this (seconds)
 MAX_AUDIO_DURATION = 30.0  # drop audio longer than this (seconds)
 AUDIO_EXTENSIONS = ["*.wav", "*.mp3", "*.m4a"]
 
+# Data-cleaning filters
+MIN_SPEECH_DURATION = 1.0  # Stage 0 (clean) VAD: drop audio with < this many seconds of detected speech
+SNR_MIN_DB = 5.0           # Stage 2 (process) : drop samples whose SNR (dB) is below this
+
 CHECKPOINT_INTERVAL = 30  # save checkpoint every 30 seconds
 MEMORY_CLEANUP_INTERVAL = 50
 MAX_RETRIES = 2

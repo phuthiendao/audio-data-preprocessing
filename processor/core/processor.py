@@ -8,7 +8,7 @@ import threading
 
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed, wait, FIRST_COMPLETED
 
-from processor.config import SAMPLING_RATE, MIN_AUDIO_DURATION, MAX_AUDIO_DURATION
+from processor.config import SAMPLING_RATE, MIN_AUDIO_DURATION, MAX_AUDIO_DURATION, SNR_MIN_DB
 from processor.utils.audio_io import get_audio_files, load_audio_16k, AudioCache, audio_duration_sec
 from processor.utils.common import clean_memory, load_transcripts, CheckpointManager, ProgressTracker
 
@@ -205,6 +205,11 @@ class VoiceProcessor:
                 item["snr"] = float(ds_batch["snr"][i])
                 item["c50"] = float(ds_batch["c50"][i])
                 item["speech_duration"] = float(ds_batch["speech_duration"][i])
+
+                # Stage 2: drop low-SNR samples (post-extraction acoustic filter)
+                if item["snr"] < SNR_MIN_DB:
+                    print(f"[drop] {item['filename']}: SNR {item['snr']:.1f} dB < {SNR_MIN_DB} dB")
+                    continue
 
                 profile = self.profile_builder.build(item, ai_pred)
                 final_profiles.append(profile)

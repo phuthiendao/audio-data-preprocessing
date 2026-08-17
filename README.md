@@ -59,6 +59,32 @@ export GOOGLE_API_KEY="your_api_key"
 
 ## Usage
 
+### 0. Clean & Filter Dataset (Stage 0 — before extraction)
+
+Normalizes transcripts and drops unusable samples into a **new, self-contained
+clean directory** (cleaned `.txt` + kept audio) — originals are never modified.
+Point steps 1 and 4 at this clean dir for consistency.
+
+Filters: missing `.txt`/`.wav` pairs, zero-byte files, duration outside
+`[1.0s, 30.0s]`, empty transcripts after cleaning, and silent / no-speech audio
+(`< 1.0s` of speech via silero-VAD).
+
+Cleaning: strips HTML and emojis; normalizes quotes and Vietnamese tone placement
+(`hoà`→`hòa`, `thuỷ`→`thủy`); collapses repeated punctuation (`???`→`?`). By default
+strips `[...]`/`(...)` tags, but passing `--keep-brackets` preserves them and
+standardizes parenthesized tags `(...)` to `[...]` (e.g. `(cười)`→`[cười]`) for
+rich-text / controllable TTS models (CosyVoice, ChatTTS).
+
+```bash
+python processor/main.py clean \
+    --input <audio_dir> \
+    --transcript <transcript_dir> \
+    --output <clean_dir> \
+    [--keep-brackets]
+```
+
+`--transcript` defaults to `--input` (when audio and `.txt` live in one folder).
+
 ### 1. Extract Voice Profiles
 
 Audio → numeric voice profile (`.jsonl`). This is the only GPU-accelerated step.
@@ -79,6 +105,10 @@ python processor/main.py process \
     --workers 8 \
     --batch_size 32
 ```
+
+> **Stage 2 (post-extraction filter).** Samples with a low signal-to-noise ratio
+> (`SNR < 5.0 dB`) are automatically dropped from the output during this step.
+> Thresholds live in `processor/config.py` (`SNR_MIN_DB`, `MIN_SPEECH_DURATION`).
 
 ### 2. Convert to Text Labels
 

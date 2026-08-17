@@ -37,15 +37,26 @@ def cmd_convert(args):
     if not os.path.exists(args.input):
         print(f"Error: Input file not found: {args.input}")
         return
-        
+
     mapper = ProfileToTextMapper()
     mapper.process(args.input, args.output)
+
+def cmd_clean(args):
+    from processor.scripts.clean_dataset import clean_dataset
+    clean_dataset(args.input, args.transcript or args.input, args.output, keep_brackets=getattr(args, "keep_brackets", False))
 
 def main():
     
     parser = argparse.ArgumentParser(description="Unified Audio Analysis Tool")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
+    # Clean Command (Stage 0: pre-extraction filtering + transcript cleaning)
+    clean_parser = subparsers.add_parser("clean", help="Stage 0: clean transcripts + filter (VAD, duration, pairs) into a new dataset dir")
+    clean_parser.add_argument("--input", required=True, help="Input audio directory")
+    clean_parser.add_argument("--transcript", default=None, help="Transcript dir (.txt); defaults to --input")
+    clean_parser.add_argument("--output", required=True, help="Output CLEAN dataset dir (cleaned .txt + kept audio)")
+    clean_parser.add_argument("--keep-brackets", action="store_true", help="Preserve [...] and (...) tags in transcript (e.g. for rich-text TTS models like CosyVoice)")
+
     # Process Command
     proc_parser = subparsers.add_parser("process", help="Analyze audio files and generate profiles")
     proc_parser.add_argument("--input", required=True, help="Input directory containing audio files")
@@ -62,7 +73,9 @@ def main():
     
     args = parser.parse_args()
     
-    if args.command == "process":
+    if args.command == "clean":
+        cmd_clean(args)
+    elif args.command == "process":
         cmd_process(args)
     elif args.command == "convert":
         cmd_convert(args)
